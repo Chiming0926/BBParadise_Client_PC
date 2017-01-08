@@ -1,0 +1,10 @@
+D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\bin\Debug\BBParadise_Client_PC.exe.config
+D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\bin\Debug\BBParadise_Client_PC.exe
+D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\bin\Debug\BBParadise_Client_PC.pdb
+D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\bin\Debug\arcalet.dll
+D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\obj\Debug\BBParadise_Client_PC.csprojResolveAssemblyReference.cache
+D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\obj\Debug\BBParadise_Client_PC.BBParadise_Client_PC.resources
+D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\obj\Debug\BBParadise_Client_PC.Properties.Resources.resources
+D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\obj\Debug\BBParadise_Client_PC.csproj.GenerateResource.Cache
+D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\obj\Debug\BBParadise_Client_PC.exe
+D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\obj\Debug\BBParadise_Client_PC.pdb
