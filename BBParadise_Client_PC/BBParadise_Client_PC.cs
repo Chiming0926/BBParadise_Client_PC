@@ -25,8 +25,11 @@ namespace BBParadise_Client_PC
                             0xfa, 0x48, 0xeb, 0x5b, 0xaf, 0xd1, 0x64, 0x20, 0x3d, 0x49, 0xa5, 0xbc, 0x40,
                             0x89, 0xa2, 0xb6, 0xc5, 0x6f, 0xd6, 0xac, 0xfe, 0x2f, 0x92, 0x4d, 0xbc, 0x3f,
                             0xbd, 0x4b, 0x4d, 0x90, 0xf8, 0x50, 0xf2, 0x2, 0x16, 0x75, 0xd4};
+		string sguid_game = "c4345a29-310f-d241-b95c-77928bf819c6";
+		
 
         List<UserModel> m_user = new List<UserModel>();
+        private static int MAX_USER = 20;
 
 
         public BBParadise_Client_PC()
@@ -109,7 +112,7 @@ namespace BBParadise_Client_PC
                         m_user[i].matchButton = new Button();
                         m_user[i].matchButton.Text = "Match";
                         m_user[i].matchButton.Name = game.gameUserid;
-                        m_user[i].matchButton.Click += new EventHandler(btnDemo_Click);
+                        m_user[i].matchButton.Click += new EventHandler(btMatch_Click);
                         m_user[i].matchButton.Location = new Point(300, 15 + (i + 1) * 30);
                         this.Controls.Add(m_user[i].matchButton);
 
@@ -128,14 +131,14 @@ namespace BBParadise_Client_PC
             }
         }
 
-        void btnDemo_Click(object sender, EventArgs e)
+        void btMatch_Click(object sender, EventArgs e)
         {
             Button tmp = (Button)sender;
             for (int i = 0; i < m_user.Count; i++)
             {
                 if (m_user[i].account == tmp.Name)
                 {
-                    string msg = m_user[i].ag.gameUserid + "/" + m_user[i].ag.poid + "/" + "test520" + "/" + m_user[i].matchinfo.matchCode;
+                    string msg = m_user[i].ag.gameUserid + "/" + m_user[i].ag.poid + "/" + m_user[i].ag.gameUserid + "/" + m_user[i].matchinfo.matchCode;
                     m_user[i].ag.PrivacySend("match:" + msg, m_user[i].dpPoid);
                 }
             }
@@ -143,7 +146,7 @@ namespace BBParadise_Client_PC
 
         void login()
         {
-            for (int i= 1; i < 11; i++)
+            for (int i= 1; i <= MAX_USER; i++)
             {
                 string username = "bbhappy" + i.ToString("000");
                 string password = "12345678";
@@ -188,12 +191,282 @@ namespace BBParadise_Client_PC
                 switch (cmds[0])
                 {
                     case "dp_new": setdpPoid(int.Parse(cmds[1])); break;
+					case "dp_room": dpRoom(cmds[1]); break;
                         //    case "cancel": CancelMatchCheck(int.Parse(cmds[1])); break;
                 }
             }
             catch (Exception) { }
         }
 
+		void GameMessageIn1(string msg, int delay, ArcaletScene scene)
+		{
+			try 
+			{
+                Console.WriteLine("@ GameMsg1 >> " + msg);
+			/*	string[] cmds = msg.Split(':');
+	            switch (cmds[0])
+	            {
+					case "dp_start": game.GameStart(cmds[1]); break;
+					case "dp_player": game.SetRevalInfos(cmds[1]); break;
+					case "dp_slot": game.FillSlot(cmds[1]); break;
+					case "dp_gameover": game.DP_GameOver(cmds[1]); break;
+					case "dp_draw": game.DP_Draw(cmds[1]); break;
+					case "dp_timeup": game.DP_TiemUP(cmds[1]); break;
+					case "dp_sync" : game.TimerSynchronization(cmds[1], delay); break;
+	            }
+	            */
+	        }
+	        catch (Exception e) { Console.WriteLine("GameMessageIn Exception:\r\n" + e.ToString()); }
+		}
+
+		void GameMessageIn2(string msg, int delay, ArcaletScene scene)
+		{
+			try 
+			{
+                Console.WriteLine("@ GameMsg2 >> " + msg);
+			/*	string[] cmds = msg.Split(':');
+	            switch (cmds[0])
+	            {
+					case "dp_start": game.GameStart(cmds[1]); break;
+					case "dp_player": game.SetRevalInfos(cmds[1]); break;
+					case "dp_slot": game.FillSlot(cmds[1]); break;
+					case "dp_gameover": game.DP_GameOver(cmds[1]); break;
+					case "dp_draw": game.DP_Draw(cmds[1]); break;
+					case "dp_timeup": game.DP_TiemUP(cmds[1]); break;
+					case "dp_sync" : game.TimerSynchronization(cmds[1], delay); break;
+	            }
+	            */
+	        }
+	        catch (Exception e) { Console.WriteLine("GameMessageIn Exception:\r\n" + e.ToString()); }
+		}
+
+		void GameMessageIn3(string msg, int delay, ArcaletScene scene)
+		{
+			try 
+			{
+                Console.WriteLine("@ GameMsg3 >> " + msg);
+			/*	string[] cmds = msg.Split(':');
+	            switch (cmds[0])
+	            {
+					case "dp_start": game.GameStart(cmds[1]); break;
+					case "dp_player": game.SetRevalInfos(cmds[1]); break;
+					case "dp_slot": game.FillSlot(cmds[1]); break;
+					case "dp_gameover": game.DP_GameOver(cmds[1]); break;
+					case "dp_draw": game.DP_Draw(cmds[1]); break;
+					case "dp_timeup": game.DP_TiemUP(cmds[1]); break;
+					case "dp_sync" : game.TimerSynchronization(cmds[1], delay); break;
+	            }
+	            */
+	        }
+	        catch (Exception e) { Console.WriteLine("GameMessageIn Exception:\r\n" + e.ToString()); }
+		}
+
+		void GameMessageIn4(string msg, int delay, ArcaletScene scene)
+		{
+			try 
+			{
+                Console.WriteLine("@ GameMsg4 >> " + msg);
+			/*	string[] cmds = msg.Split(':');
+	            switch (cmds[0])
+	            {
+					case "dp_start": game.GameStart(cmds[1]); break;
+					case "dp_player": game.SetRevalInfos(cmds[1]); break;
+					case "dp_slot": game.FillSlot(cmds[1]); break;
+					case "dp_gameover": game.DP_GameOver(cmds[1]); break;
+					case "dp_draw": game.DP_Draw(cmds[1]); break;
+					case "dp_timeup": game.DP_TiemUP(cmds[1]); break;
+					case "dp_sync" : game.TimerSynchronization(cmds[1], delay); break;
+	            }
+	            */
+	        }
+	        catch (Exception e) { Console.WriteLine("GameMessageIn Exception:\r\n" + e.ToString()); }
+		}
+
+		void GameMessageIn5(string msg, int delay, ArcaletScene scene)
+		{
+			try 
+			{
+                Console.WriteLine("@ GameMsg5 >> " + msg);
+			/*	string[] cmds = msg.Split(':');
+	            switch (cmds[0])
+	            {
+					case "dp_start": game.GameStart(cmds[1]); break;
+					case "dp_player": game.SetRevalInfos(cmds[1]); break;
+					case "dp_slot": game.FillSlot(cmds[1]); break;
+					case "dp_gameover": game.DP_GameOver(cmds[1]); break;
+					case "dp_draw": game.DP_Draw(cmds[1]); break;
+					case "dp_timeup": game.DP_TiemUP(cmds[1]); break;
+					case "dp_sync" : game.TimerSynchronization(cmds[1], delay); break;
+	            }
+	            */
+	        }
+	        catch (Exception e) { Console.WriteLine("GameMessageIn Exception:\r\n" + e.ToString()); }
+		}
+
+		void GameMessageIn6(string msg, int delay, ArcaletScene scene)
+		{
+			try 
+			{
+                Console.WriteLine("@ GameMsg6 >> " + msg);
+			/*	string[] cmds = msg.Split(':');
+	            switch (cmds[0])
+	            {
+					case "dp_start": game.GameStart(cmds[1]); break;
+					case "dp_player": game.SetRevalInfos(cmds[1]); break;
+					case "dp_slot": game.FillSlot(cmds[1]); break;
+					case "dp_gameover": game.DP_GameOver(cmds[1]); break;
+					case "dp_draw": game.DP_Draw(cmds[1]); break;
+					case "dp_timeup": game.DP_TiemUP(cmds[1]); break;
+					case "dp_sync" : game.TimerSynchronization(cmds[1], delay); break;
+	            }
+	            */
+	        }
+	        catch (Exception e) { Console.WriteLine("GameMessageIn Exception:\r\n" + e.ToString()); }
+		}
+
+		
+
+		void dpRoom(string msg)
+		{
+			string[] m = msg.Split('/');
+			int sid = int.Parse(m[0]);
+			string code = m[1];
+			string account = m[2];
+
+			/* find user in our list */
+			for (int i =0; i< m_user.Count; i++)
+            {
+				if (m_user[i].account == account)
+				{
+					if(m_user[i].matchinfo.matchCode != code)
+						return;
+					if(m_user[i].sn != null) 
+					{			
+						//m_user[i].sn.Leave(CB_LeaveScene, sid);
+						Console.WriteLine("Sn is not null");			
+					}
+					else 
+					{	
+						Console.WriteLine("create i = " + i);
+						m_user[i].sn = new ArcaletScene(m_user[i].ag, sguid_game, sid);
+						switch (i)
+						{
+							case 0:
+								m_user[i].sn.onMessageIn += GameMessageIn1;
+								m_user[i].sn.onCompletion += CB_EnterRoom1;
+								break;
+							case 1:
+								m_user[i].sn.onMessageIn += GameMessageIn2;
+								m_user[i].sn.onCompletion += CB_EnterRoom2;
+								break;
+							case 2:
+								m_user[i].sn.onMessageIn += GameMessageIn3;
+								m_user[i].sn.onCompletion += CB_EnterRoom3;
+								break;	
+							case 3:
+								m_user[i].sn.onMessageIn += GameMessageIn4;
+								m_user[i].sn.onCompletion += CB_EnterRoom4;
+								break;
+							case 4:
+								m_user[i].sn.onMessageIn += GameMessageIn5;
+								m_user[i].sn.onCompletion += CB_EnterRoom5;
+								break;	
+							case 5:
+								m_user[i].sn.onMessageIn += GameMessageIn6;
+								m_user[i].sn.onCompletion += CB_EnterRoom6;
+								break;
+						}
+						
+						m_user[i].sn.Launch();
+					}
+				}
+			}
+		}
+
+		void CB_LeaveScene(int code, object token)
+		{
+			/*if(code == 0) {			
+				Debug.Log("CB_LeaveScene Successed");			
+				int sid = (int)token;
+				sn = new ArcaletScene(ag, sguid_game, sid);
+				sn.onMessageIn += GameMessageIn;
+				sn.onCompletion += CB_EnterRoom;
+				sn.Launch();
+			}
+			else {
+				Debug.Log("CB_LeaveScene Failed: " + code);
+				matchInfos.matchCode = "";
+				ag.PrivacySend("cancel:" + ag.poid, serverSettings.dpPoid);
+				Application.LoadLevel("MainMenu");
+			}*/
+		}	
+	
+		void CB_EnterRoom1(int code, ArcaletScene scene)
+		{
+			if(code == 0) {
+                Console.WriteLine("CB_EnterRoom1 Successed");
+				m_user[0].sn.Send("ready:" + m_user[0].ag.poid);
+			}
+			else {
+                Console.WriteLine("CB_EnterRoom1 Failed: " + code);
+			}
+		}
+
+		void CB_EnterRoom2(int code, ArcaletScene scene)
+		{
+			if(code == 0) {
+                Console.WriteLine("CB_EnterRoom2 Successed");
+				m_user[1].sn.Send("ready:" + m_user[1].ag.poid);
+			}
+			else {
+                Console.WriteLine("CB_EnterRoom2 Failed: " + code);
+			}
+		}
+
+		void CB_EnterRoom3(int code, ArcaletScene scene)
+		{
+			if(code == 0) {
+                Console.WriteLine("CB_EnterRoom3 Successed");
+				m_user[2].sn.Send("ready:" + m_user[2].ag.poid);
+			}
+			else {
+                Console.WriteLine("CB_EnterRoom3 Failed: " + code);
+			}
+		}
+
+		void CB_EnterRoom4(int code, ArcaletScene scene)
+		{
+			if(code == 0) {
+                Console.WriteLine("CB_EnterRoom4 Successed");
+				m_user[3].sn.Send("ready:" + m_user[3].ag.poid);
+			}
+			else {
+                Console.WriteLine("CB_EnterRoom4 Failed: " + code);
+			}
+		}
+
+		void CB_EnterRoom5(int code, ArcaletScene scene)
+		{
+			if(code == 0) {
+                Console.WriteLine("CB_EnterRoom5 Successed");
+				m_user[4].sn.Send("ready:" + m_user[4].ag.poid);
+			}
+			else {
+                Console.WriteLine("CB_EnterRoom5 Failed: " + code);
+			}
+		}
+
+		void CB_EnterRoom6(int code, ArcaletScene scene)
+		{
+			if(code == 0) {
+                Console.WriteLine("CB_EnterRoom6 Successed");
+				m_user[5].sn.Send("ready:" + m_user[5].ag.poid);
+			}
+			else {
+                Console.WriteLine("CB_EnterRoom6 Failed: " + code);
+			}
+		}
+		
         void setdpPoid(int dpPoid)
         {
             for (int i =0; i< m_user.Count; i++)
@@ -209,11 +482,11 @@ namespace BBParadise_Client_PC
         internal string account = "";
         internal int poid = 0;
         internal int dpPoid = 0;
-        internal string matchCode = "";
         internal ArcaletGame ag = null;
         internal Label userStatus = null;
         internal Label userName = null;
         internal Button matchButton = null;
+		internal ArcaletScene sn = null;
     }
 }
 
