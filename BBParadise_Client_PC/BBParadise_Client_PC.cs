@@ -122,6 +122,13 @@ namespace BBParadise_Client_PC
 
                         m_user[i].matchinfo = new MatchInfo();
                         m_user[i].matchinfo.GenerateMatchCode();
+
+						m_user[i].upButton = new Button();
+                        m_user[i].upButton.Text = "Up";
+                        m_user[i].upButton.Name = game.gameUserid;
+                        m_user[i].upButton.Click += new EventHandler(btUp_Click);
+                        m_user[i].upButton.Location = new Point(450, 15 + (i + 1) * 30);
+                        this.Controls.Add(m_user[i].upButton);
                     }
                 }
             }
@@ -140,6 +147,19 @@ namespace BBParadise_Client_PC
                 {
                     string msg = m_user[i].ag.gameUserid + "/" + m_user[i].ag.poid + "/" + m_user[i].ag.gameUserid + "/" + m_user[i].matchinfo.matchCode;
                     m_user[i].ag.PrivacySend("match:" + msg, m_user[i].dpPoid);
+                }
+            }
+        }
+
+		void btUp_Click(object sender, EventArgs e)
+        {
+            Button tmp = (Button)sender;
+            for (int i = 0; i < m_user.Count; i++)
+            {
+                if (m_user[i].account == tmp.Name)
+                {
+                    string msg = "bb_move:" + m_user[i].dpPoid + "/" + "UP";
+                    m_user[i].sn.Send(msg);
                 }
             }
         }
@@ -486,6 +506,7 @@ namespace BBParadise_Client_PC
         internal Label userStatus = null;
         internal Label userName = null;
         internal Button matchButton = null;
+		internal Button upButton = null;
 		internal ArcaletScene sn = null;
     }
 }
