@@ -425,7 +425,7 @@ namespace BBParadise_Client_PC
 		{
 			if(code == 0) {
                 Console.WriteLine("CB_EnterRoom1 Successed");
-				m_user[0].sn.Send("ready:" + m_user[0].ag.poid);
+				m_user[0].sn.Send("bbready:" + m_user[0].account + "/" + m_user[0].ag.poid);
 			}
 			else {
                 Console.WriteLine("CB_EnterRoom1 Failed: " + code);
@@ -436,7 +436,7 @@ namespace BBParadise_Client_PC
 		{
 			if(code == 0) {
                 Console.WriteLine("CB_EnterRoom2 Successed");
-				m_user[1].sn.Send("ready:" + m_user[1].ag.poid);
+				m_user[1].sn.Send("bbready:" + m_user[1].account + "/" + m_user[1].ag.poid);
 			}
 			else {
                 Console.WriteLine("CB_EnterRoom2 Failed: " + code);
@@ -447,7 +447,7 @@ namespace BBParadise_Client_PC
 		{
 			if(code == 0) {
                 Console.WriteLine("CB_EnterRoom3 Successed");
-				m_user[2].sn.Send("ready:" + m_user[2].ag.poid);
+				m_user[2].sn.Send("bbready:" + m_user[2].account + "/" + m_user[2].ag.poid);
 			}
 			else {
                 Console.WriteLine("CB_EnterRoom3 Failed: " + code);
@@ -458,7 +458,7 @@ namespace BBParadise_Client_PC
 		{
 			if(code == 0) {
                 Console.WriteLine("CB_EnterRoom4 Successed");
-				m_user[3].sn.Send("ready:" + m_user[3].ag.poid);
+				m_user[3].sn.Send("bbready:" + m_user[3].account + "/" + m_user[3].ag.poid);
 			}
 			else {
                 Console.WriteLine("CB_EnterRoom4 Failed: " + code);
@@ -469,7 +469,7 @@ namespace BBParadise_Client_PC
 		{
 			if(code == 0) {
                 Console.WriteLine("CB_EnterRoom5 Successed");
-				m_user[4].sn.Send("ready:" + m_user[4].ag.poid);
+				m_user[4].sn.Send("bbready:" + m_user[4].account + "/" + m_user[4].ag.poid);
 			}
 			else {
                 Console.WriteLine("CB_EnterRoom5 Failed: " + code);
@@ -480,7 +480,7 @@ namespace BBParadise_Client_PC
 		{
 			if(code == 0) {
                 Console.WriteLine("CB_EnterRoom6 Successed");
-				m_user[5].sn.Send("ready:" + m_user[5].ag.poid);
+				m_user[5].sn.Send("bbready:" + m_user[5].account + "/" + m_user[5].ag.poid);
 			}
 			else {
                 Console.WriteLine("CB_EnterRoom6 Failed: " + code);
