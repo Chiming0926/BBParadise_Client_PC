@@ -29,7 +29,7 @@ namespace BBParadise_Client_PC
 		
 
         List<UserModel> m_user = new List<UserModel>();
-        private static int MAX_USER = 20;
+        private static int MAX_USER = 9;
 
 
         public BBParadise_Client_PC()
@@ -129,6 +129,34 @@ namespace BBParadise_Client_PC
                         m_user[i].upButton.Click += new EventHandler(btUp_Click);
                         m_user[i].upButton.Location = new Point(450, 15 + (i + 1) * 30);
                         this.Controls.Add(m_user[i].upButton);
+
+						m_user[i].upButton = new Button();
+                        m_user[i].upButton.Text = "Down";
+                        m_user[i].upButton.Name = game.gameUserid;
+                        m_user[i].upButton.Click += new EventHandler(btDown_Click);
+                        m_user[i].upButton.Location = new Point(550, 15 + (i + 1) * 30);
+                        this.Controls.Add(m_user[i].upButton);
+
+						m_user[i].upButton = new Button();
+                        m_user[i].upButton.Text = "Left";
+                        m_user[i].upButton.Name = game.gameUserid;
+                        m_user[i].upButton.Click += new EventHandler(btLeft_Click);
+                        m_user[i].upButton.Location = new Point(650, 15 + (i + 1) * 30);
+                        this.Controls.Add(m_user[i].upButton);
+
+						m_user[i].upButton = new Button();
+                        m_user[i].upButton.Text = "Right";
+                        m_user[i].upButton.Name = game.gameUserid;
+                        m_user[i].upButton.Click += new EventHandler(btRight_Click);
+                        m_user[i].upButton.Location = new Point(750, 15 + (i + 1) * 30);
+                        this.Controls.Add(m_user[i].upButton);
+
+						m_user[i].upButton = new Button();
+                        m_user[i].upButton.Text = "Stop";
+                        m_user[i].upButton.Name = game.gameUserid;
+                        m_user[i].upButton.Click += new EventHandler(btStop_Click);
+                        m_user[i].upButton.Location = new Point(850, 15 + (i + 1) * 30);
+                        this.Controls.Add(m_user[i].upButton);
                     }
                 }
             }
@@ -151,14 +179,70 @@ namespace BBParadise_Client_PC
             }
         }
 
-		void btUp_Click(object sender, EventArgs e)
+		void btStop_Click(object sender, EventArgs e)
         {
             Button tmp = (Button)sender;
             for (int i = 0; i < m_user.Count; i++)
             {
                 if (m_user[i].account == tmp.Name)
                 {
-                    string msg = "bb_move:" + m_user[i].dpPoid + "/" + "UP";
+                    string msg = "bb_stop:" + m_user[i].account + "/" + "UP";
+                    m_user[i].sn.Send(msg);
+                }
+            }
+        }
+
+		void btUp_Click(object sender, EventArgs e)
+        {
+			Console.WriteLine("@@@@@@@@@@@@@@@ btUp_Click");
+            Button tmp = (Button)sender;
+            for (int i = 0; i < m_user.Count; i++)
+            {
+                if (m_user[i].account == tmp.Name)
+                {
+					Console.WriteLine("@@@@@@@@@@@@@@@ btUp_Click1");
+                    string msg = "bb_move:" + m_user[i].account + "/" + 0;
+                    m_user[i].sn.Send(msg);
+                }
+            }
+        }
+
+		void btDown_Click(object sender, EventArgs e)
+        {
+			Console.WriteLine("@@@@@@@@@@@@@@@ btDown_Click");
+            Button tmp = (Button)sender;
+            for (int i = 0; i < m_user.Count; i++)
+            {
+                if (m_user[i].account == tmp.Name)
+                {
+					Console.WriteLine("@@@@@@@@@@@@@@@ btDown_Click");
+                    string msg = "bb_move:" + m_user[i].account + "/" + 1;
+                    m_user[i].sn.Send(msg);
+                }
+            }
+        }
+
+		void btLeft_Click(object sender, EventArgs e)
+        {
+            Button tmp = (Button)sender;
+            for (int i = 0; i < m_user.Count; i++)
+            {
+                if (m_user[i].account == tmp.Name)
+                {
+                    string msg = "bb_move:" + m_user[i].account + "/" + 3;
+                    m_user[i].sn.Send(msg);
+                }
+            }
+        }
+
+		void btRight_Click(object sender, EventArgs e)
+        {
+            Button tmp = (Button)sender;
+            for (int i = 0; i < m_user.Count; i++)
+            {
+                if (m_user[i].account == tmp.Name)
+                {
+                    string msg = "bb_move:" + m_user[i].account + "/" + 2;
                     m_user[i].sn.Send(msg);
                 }
             }
@@ -425,7 +509,7 @@ namespace BBParadise_Client_PC
 		{
 			if(code == 0) {
                 Console.WriteLine("CB_EnterRoom1 Successed");
-				m_user[0].sn.Send("bbready:" + m_user[0].account + "/" + m_user[0].ag.poid);
+				m_user[0].sn.Send("bb_ready:" + m_user[0].account + "/" + m_user[0].ag.poid);
 			}
 			else {
                 Console.WriteLine("CB_EnterRoom1 Failed: " + code);
@@ -436,7 +520,7 @@ namespace BBParadise_Client_PC
 		{
 			if(code == 0) {
                 Console.WriteLine("CB_EnterRoom2 Successed");
-				m_user[1].sn.Send("bbready:" + m_user[1].account + "/" + m_user[1].ag.poid);
+				m_user[1].sn.Send("bb_ready:" + m_user[1].account + "/" + m_user[1].ag.poid);
 			}
 			else {
                 Console.WriteLine("CB_EnterRoom2 Failed: " + code);
@@ -447,7 +531,7 @@ namespace BBParadise_Client_PC
 		{
 			if(code == 0) {
                 Console.WriteLine("CB_EnterRoom3 Successed");
-				m_user[2].sn.Send("bbready:" + m_user[2].account + "/" + m_user[2].ag.poid);
+				m_user[2].sn.Send("bb_ready:" + m_user[2].account + "/" + m_user[2].ag.poid);
 			}
 			else {
                 Console.WriteLine("CB_EnterRoom3 Failed: " + code);
@@ -458,7 +542,7 @@ namespace BBParadise_Client_PC
 		{
 			if(code == 0) {
                 Console.WriteLine("CB_EnterRoom4 Successed");
-				m_user[3].sn.Send("bbready:" + m_user[3].account + "/" + m_user[3].ag.poid);
+				m_user[3].sn.Send("bb_ready:" + m_user[3].account + "/" + m_user[3].ag.poid);
 			}
 			else {
                 Console.WriteLine("CB_EnterRoom4 Failed: " + code);
@@ -469,7 +553,7 @@ namespace BBParadise_Client_PC
 		{
 			if(code == 0) {
                 Console.WriteLine("CB_EnterRoom5 Successed");
-				m_user[4].sn.Send("bbready:" + m_user[4].account + "/" + m_user[4].ag.poid);
+				m_user[4].sn.Send("bb_ready:" + m_user[4].account + "/" + m_user[4].ag.poid);
 			}
 			else {
                 Console.WriteLine("CB_EnterRoom5 Failed: " + code);
@@ -480,7 +564,7 @@ namespace BBParadise_Client_PC
 		{
 			if(code == 0) {
                 Console.WriteLine("CB_EnterRoom6 Successed");
-				m_user[5].sn.Send("bbready:" + m_user[5].account + "/" + m_user[5].ag.poid);
+				m_user[5].sn.Send("bb_ready:" + m_user[5].account + "/" + m_user[5].ag.poid);
 			}
 			else {
                 Console.WriteLine("CB_EnterRoom6 Failed: " + code);
