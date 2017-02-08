@@ -157,6 +157,13 @@ namespace BBParadise_Client_PC
                         m_user[i].upButton.Click += new EventHandler(btStop_Click);
                         m_user[i].upButton.Location = new Point(850, 15 + (i + 1) * 30);
                         this.Controls.Add(m_user[i].upButton);
+
+						m_user[i].upButton = new Button();
+                        m_user[i].upButton.Text = "Death";
+                        m_user[i].upButton.Name = game.gameUserid;
+                        m_user[i].upButton.Click += new EventHandler(btDeath_Click);
+                        m_user[i].upButton.Location = new Point(950, 15 + (i + 1) * 30);
+                        this.Controls.Add(m_user[i].upButton);
                     }
                 }
             }
@@ -192,15 +199,27 @@ namespace BBParadise_Client_PC
             }
         }
 
-		void btUp_Click(object sender, EventArgs e)
+		void btDeath_Click(object sender, EventArgs e)
         {
-			Console.WriteLine("@@@@@@@@@@@@@@@ btUp_Click");
             Button tmp = (Button)sender;
             for (int i = 0; i < m_user.Count; i++)
             {
                 if (m_user[i].account == tmp.Name)
                 {
-					Console.WriteLine("@@@@@@@@@@@@@@@ btUp_Click1");
+                    string msg = "bb_death:" + m_user[i].account + "/";
+                    m_user[i].sn.Send(msg);
+                }
+            }
+        }
+
+
+		void btUp_Click(object sender, EventArgs e)
+        {
+            Button tmp = (Button)sender;
+            for (int i = 0; i < m_user.Count; i++)
+            {
+                if (m_user[i].account == tmp.Name)
+                {
                     string msg = "bb_move:" + m_user[i].account + "/" + 0;
                     m_user[i].sn.Send(msg);
                 }

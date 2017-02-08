@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(961, 629);
+            this.ClientSize = new System.Drawing.Size(1163, 629);
             this.Name = "BBParadise_Client_PC";
             this.Text = "Form1";
             this.ResumeLayout(false);
