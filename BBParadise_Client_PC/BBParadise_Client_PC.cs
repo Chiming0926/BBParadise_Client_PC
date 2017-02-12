@@ -321,23 +321,37 @@ namespace BBParadise_Client_PC
             catch (Exception) { }
         }
 
+		internal void SceneGameOver(ArcaletScene sn)
+		{
+			if(sn != null) 
+			{
+				Console.WriteLine("SceneGameOver");
+				sn.Leave(CB_SceneGameOver, null);
+			}
+		}
+
+		void CB_SceneGameOver(int code, object token)
+		{
+			if (code == 0) 
+			{
+				Console.WriteLine("CB_SceneGameOver Successed");
+			}
+			if (code!=0) 
+			{
+				Console.WriteLine("CB_SceneGameOver Failed");	
+			}
+		}
 		void GameMessageIn1(string msg, int delay, ArcaletScene scene)
 		{
 			try 
 			{
                 Console.WriteLine("@ GameMsg1 >> " + msg);
-			/*	string[] cmds = msg.Split(':');
+				string[] cmds = msg.Split(':');
 	            switch (cmds[0])
 	            {
-					case "dp_start": game.GameStart(cmds[1]); break;
-					case "dp_player": game.SetRevalInfos(cmds[1]); break;
-					case "dp_slot": game.FillSlot(cmds[1]); break;
-					case "dp_gameover": game.DP_GameOver(cmds[1]); break;
-					case "dp_draw": game.DP_Draw(cmds[1]); break;
-					case "dp_timeup": game.DP_TiemUP(cmds[1]); break;
-					case "dp_sync" : game.TimerSynchronization(cmds[1], delay); break;
+					case "bb_over": SceneGameOver(scene); break;
 	            }
-	            */
+	            
 	        }
 	        catch (Exception e) { Console.WriteLine("GameMessageIn Exception:\r\n" + e.ToString()); }
 		}
@@ -347,18 +361,11 @@ namespace BBParadise_Client_PC
 			try 
 			{
                 Console.WriteLine("@ GameMsg2 >> " + msg);
-			/*	string[] cmds = msg.Split(':');
+				string[] cmds = msg.Split(':');
 	            switch (cmds[0])
 	            {
-					case "dp_start": game.GameStart(cmds[1]); break;
-					case "dp_player": game.SetRevalInfos(cmds[1]); break;
-					case "dp_slot": game.FillSlot(cmds[1]); break;
-					case "dp_gameover": game.DP_GameOver(cmds[1]); break;
-					case "dp_draw": game.DP_Draw(cmds[1]); break;
-					case "dp_timeup": game.DP_TiemUP(cmds[1]); break;
-					case "dp_sync" : game.TimerSynchronization(cmds[1], delay); break;
+					case "bb_over": SceneGameOver(scene); break;
 	            }
-	            */
 	        }
 	        catch (Exception e) { Console.WriteLine("GameMessageIn Exception:\r\n" + e.ToString()); }
 		}
