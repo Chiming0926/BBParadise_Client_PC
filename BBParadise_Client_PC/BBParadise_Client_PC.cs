@@ -180,7 +180,7 @@ namespace BBParadise_Client_PC
             {
                 if (m_user[i].account == tmp.Name)
                 {
-                    string msg = m_user[i].ag.gameUserid + "/" + m_user[i].ag.poid + "/" + m_user[i].ag.gameUserid + "/" + m_user[i].matchinfo.matchCode;
+                    string msg = m_user[i].ag.gameUserid + "/" + m_user[i].ag.poid + "/" + m_user[i].ag.gameUserid + "/" + m_user[i].matchinfo.matchCode + "/938736822806986";
                     m_user[i].ag.PrivacySend("match:" + msg, m_user[i].dpPoid);
                 }
             }
