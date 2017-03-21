@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +27,8 @@ namespace BBParadise_Client_PC
                             0x89, 0xa2, 0xb6, 0xc5, 0x6f, 0xd6, 0xac, 0xfe, 0x2f, 0x92, 0x4d, 0xbc, 0x3f,
                             0xbd, 0x4b, 0x4d, 0x90, 0xf8, 0x50, 0xf2, 0x2, 0x16, 0x75, 0xd4};
 		string sguid_game = "c4345a29-310f-d241-b95c-77928bf819c6";
+
+		private const string iguid = "2a0ccd1d-f564-f74f-b1c6-d2a6157b8b59";
 		
 
         List<UserModel> m_user = new List<UserModel>();
@@ -92,13 +95,38 @@ namespace BBParadise_Client_PC
             }
         }
 
-
+		void GetItemClass(int i) 
+		{
+		 	ArcaletItem.GetItemClass(m_user[i].ag, iguid, CB_GetItemClass, null);
+		}
+		
+		void CB_GetItemClass(int code, object data, object token) 
+		{
+			if(code == 0) {
+				Console.WriteLine("GetItemClass Successed");
+				
+				List<Hashtable> list = data as List<Hashtable>;
+				List<Hashtable> attr_ht = list[0]["attr"] as List<Hashtable>;
+				foreach (Hashtable attr in attr_ht) 
+				{
+					Console.WriteLine("attr[name].ToString() = " + attr["name"].ToString());
+		           // if(attr["name"].ToString() == "p_level") 
+		           // 	pr_level = int.Parse(attr["value"].ToString());
+		            	
+		           //	if(attr["name"].ToString() == "p_score") 
+		          // 		pr_score = int.Parse(attr["value"].ToString());
+	          	}			
+			}
+			else {
+                Console.WriteLine("GetItemClass Failed - Error:" + code);
+			}
+		}
 
         void CB_ArcaletLaunch(int code, ArcaletGame game)
         {
             if (code == 0)
             {
-                for (int i = 0; i < m_user.Count; i++)
+                for (int i = 0; i < 1/*m_user.Count*/; i++)
                 {
                     if (m_user[i].account == game.gameUserid)
                     {
@@ -164,6 +192,8 @@ namespace BBParadise_Client_PC
                         m_user[i].upButton.Click += new EventHandler(btDeath_Click);
                         m_user[i].upButton.Location = new Point(950, 15 + (i + 1) * 30);
                         this.Controls.Add(m_user[i].upButton);
+
+						GetItemClass(i);
                     }
                 }
             }

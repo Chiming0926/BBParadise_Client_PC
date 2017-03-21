@@ -8,3 +8,6 @@ D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\obj\Debug\BBParadise_Clie
 D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\obj\Debug\BBParadise_Client_PC.csproj.GenerateResource.Cache
 D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\obj\Debug\BBParadise_Client_PC.exe
 D:\workspace\BBParadise_Client_PC\BBParadise_Client_PC\obj\Debug\BBParadise_Client_PC.pdb
+D:\download\BB\BBParadise_Client_PC\BBParadise_Client_PC\bin\Debug\BBParadise_Client_PC.exe.config
+D:\download\BB\BBParadise_Client_PC\BBParadise_Client_PC\obj\Debug\BBParadise_Client_PC.exe
+D:\download\BB\BBParadise_Client_PC\BBParadise_Client_PC\obj\Debug\BBParadise_Client_PC.pdb
