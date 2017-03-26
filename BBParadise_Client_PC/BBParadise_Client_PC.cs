@@ -32,7 +32,7 @@ namespace BBParadise_Client_PC
 		
 
         List<UserModel> m_user = new List<UserModel>();
-        private static int MAX_USER = 9;
+        private static int MAX_USER = 2;
 
 
         public BBParadise_Client_PC()
